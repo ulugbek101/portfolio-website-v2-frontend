@@ -1,5 +1,5 @@
-function Container({children}) {
-    return <div className="mt-48">
+function Container({ children, extraClasses }) {
+    return <div className={`${extraClasses} mt-48`}>
         {children}
     </div>
 }
