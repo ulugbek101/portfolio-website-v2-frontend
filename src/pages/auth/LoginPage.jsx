@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import Icon from "../../components/UI/Icon";
 import LoadingSpinner from "../../components/UI/LoadingSpinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../../components/auth/Input";
 
 function LoginPage() {
     const [isLoading, setIsLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [formIsValid, setFormIsValid] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -21,6 +22,11 @@ function LoginPage() {
         }
     }
 
+    useEffect(() => {
+        setFormIsValid(/^[a-z0-9._%+-]+@(?:[a-z0-9-]+\.)+(?:com|uz|ru)$/i.test(email) && password.trim().length > 0);
+        console.log(123)
+    }, [email, password])
+
     return <>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/4">
             <form method="post" className="flex flex-col gap-5 mx-auto border border-gray-600 rounded-lg p-20" onSubmit={handleSubmit}>
@@ -30,11 +36,10 @@ function LoginPage() {
                 </Link>
                 <h2 className="text-white font-semibold text-3xl text-center">Sign in to your account</h2>
 
-                <Input name="email" type="email" label="E-mail" icon="person" />
+                <Input value={email} onChange={e => setEmail(e.target.value)} autoFocus={true} name="email" type="email" label="E-mail" icon="person" />
+                <Input value={password} onChange={e => setPassword(e.target.value)} name="password" type="password" label="Password" icon="key" />
 
-                <Input name="password" type="password" label="Password" icon="key" />
-
-                <button disabled={isLoading} className="disabled:border-black disabled:hover:cursor-not-allowed disabled:hover:bg-black disabled:active:scale-100 flex justify-center items-center focus:outline-none w-full border border-gray-600 focus:border-white active:focus:border-gray-600 hover:cursor-pointer active:scale-95 transition rounded-lg py-4 text-center font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 focus:bg-gray-900 focus:text-gray-200">
+                <button disabled={isLoading || !formIsValid} className={`${!formIsValid ? 'disabled:hover:text-gray-400 disabled:border-gray-600 disabled:bg-gray-800 disabled:active:scale-100' : 'disabled:hover:bg-black disabled:border-black disabled:active:scale-100'} disabled:hover:cursor-not-allowed flex justify-center items-center focus:outline-none w-full border border-gray-600 focus:border-white active:focus:border-gray-600 hover:cursor-pointer active:scale-95 transition rounded-lg py-4 text-center font-semibold text-gray-400 hover:text-gray-200 hover:bg-gray-900 focus:bg-gray-900 focus:text-gray-200`}>
                     {isLoading && <LoadingSpinner />}
                     {!isLoading && "Login"}
                 </button>
