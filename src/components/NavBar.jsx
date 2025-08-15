@@ -43,11 +43,16 @@ const NavBar = () => {
                     </ul>
                 </nav>
 
-                <a href="#contact" className="contact-btn group">
-                    <div className="inner">
-                        <span>Contact me</span>
-                    </div>
-                </a>
+                <div className="flex flex-row items-center gap-5">
+                    <Link to="/#contact" className="contact-btn group">
+                        <div className="inner">
+                            <span>Contact me</span>
+                        </div>
+                    </Link>
+                    <Link to="/login" className="border border-white text-white transition hover:bg-gray-700 active:scale-95 rounded-lg py-2 px-4">
+                        Login
+                    </Link>
+                </div>
             </div>
         </header>
     );
