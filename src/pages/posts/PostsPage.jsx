@@ -1,8 +1,8 @@
-import Navbar from "../components/NavBar.jsx";
-import Container from "../components/Container.jsx";
-import PostItem from "../components/posts/PostItem.jsx";
-import PageTitle from "../components/UI/PageTitle.jsx";
-import Icon from "../components/UI/Icon.jsx";
+import Navbar from "../../components/NavBar.jsx";
+import PageContainer from "../../components/PageContainer.jsx";
+import PostItem from "../../components/posts/PostItem.jsx";
+import PageTitle from "../../components/UI/PageTitle.jsx";
+import Icon from "../../components/UI/Icon.jsx";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -63,11 +63,11 @@ function PostsPage() {
     return (
         <>
             <Navbar />
-            <Container>
+            <PageContainer>
                 <PageTitle>All posts</PageTitle>
                 <div className="w-1/2 mx-auto">
                     <div className="relative">
-                        {searchTerm && <Icon name="close" extraClasses="absolute top-1/2 right-0 select-none -translate-x-1/2 -translate-y-1/2 text-gray-400 hover:cursor-pointer active:scale-95 transition" onClick={() => setSearchTerm("")} />}
+                        {searchTerm && <Icon name="close" extraClasses="absolute top-1/2 right-0 select-none -translate-x-1/2 -translate-y-1/2 hover:cursor-pointer active:scale-95 transition" onClick={() => setSearchTerm("")} />}
                         <input
                             className="focus:border-gray-400 w-full my-10 border border-gray-700 placeholder:text-gray-400 placeholder:font-normal focus:outline-none text-gray-400 px-10 py-2 font-normal rounded-lg"
                             type="text"
@@ -87,7 +87,7 @@ function PostsPage() {
                         <PostItem key={post.id} post={post} />
                     ))}
                 </div>
-            </Container>
+            </PageContainer>
         </>
     );
 }
