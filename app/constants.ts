@@ -3,5 +3,6 @@ export const NAV_ITEMS = [
     {label: "Posts", path: "/posts"},
     {label: "About", path: "/about"},
     {label: "Portfolio", path: "/portfolio"},
+    {label: "Profile", path: "/profile"},
     {label: "Reviews", path: "/reviews"},
 ];
