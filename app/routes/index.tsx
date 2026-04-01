@@ -2,6 +2,7 @@ import type {Route} from "./+types/home";
 import {useContext} from "react";
 import {Context} from "~/store/context";
 import Header from "~/components/index/Header";
+import About from "~/components/index/About";
 
 export function meta({}: Route.MetaArgs) {
     const {siteTitle} = useContext(Context);
@@ -15,5 +16,6 @@ export function meta({}: Route.MetaArgs) {
 export default function Index() {
   return <>
       <Header />
+      <About />
   </>
 }
